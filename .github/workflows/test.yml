@@ -9,10 +9,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          persist-credentials: false
+          path: vanilla
           fetch-depth: 0
-      - uses: ad-m/github-push-action@master
+      - uses: actions/checkout@v3
         with:
-          github_token: ${{ secrets.API_TOKEN_GITHUB }}
           repository: frangio/test-push-2
-          branch: ${{ github.ref }}
+          fetch-depth: 0
+          path: upgradeable
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+      - run: |
+          mv vanilla/README upgradeable/README
+          cd upgradeable
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
