@@ -1,4 +1,3 @@
-blank_issues_enabled: false
 contact_links:
   - name: Bug Reports & Feature Requests
     url: https://github.com/OpenZeppelin/openzeppelin-contracts/issues/new/choose
